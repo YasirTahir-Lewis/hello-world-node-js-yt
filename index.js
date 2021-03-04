@@ -1,21 +1,10 @@
-var http = require('http');
-var url = require('url');
-var dt = require('./datetime');
+const http = require('http')
+const port = process.env.PORT || 3000
 
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' })
+  res.end('Hello world!')
+})
 
-const server = http.createServer((request, response) => {
-    // Write the request to the log. 
-    console.log(request);
-
-    // Standard Hello World.
-    response.writeHead(200, {'Content-Type': 'text/html'});
-    response.write('<h3>Hello World!</h3>')
-
-    
-});
-
-const port = process.env.PORT || 1337;
-server.listen(port);
-
-console.log("Server running at http://localhost:%d", port);
-
+server.listen(port, () => console.log(`server started on port ${port}; ` +
+  'press Ctrl-C to terminate....'))
